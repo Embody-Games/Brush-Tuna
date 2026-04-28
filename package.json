@@ -1,11 +1,11 @@
 {
-	"name": "blockbench_plugin_template",
-	"title": "BlockBench Plugin Template",
+	"name": "pen_pusher",
+	"title": "Pen Pusher",
 	"version": "1.0.0",
 	"tags": [
-		"Tag A",
-		"Tag B",
-		"Tag C"
+		"Texture",
+		"Paint",
+		"Tool"
 	],
 	"min_blockbench_version": "5.1.4",
 	"author": {
@@ -15,9 +15,9 @@
 	},
 	"repository": {
 		"type": "github",
-		"url": "https://github.com/SnaveSutit/blockbench-plugin-template"
+		"url": "https://github.com/SnaveSutit/pen-pusher"
 	},
-	"description": "An advanced Blockbench plugin template",
+	"description": "A Blockbench plugin that adds more brush options",
 	"main": "./dist/index.js",
 	"types": "./dist/src/index.d.ts",
 	"private": true,

@@ -173,6 +173,7 @@ export default tsESLint.config(
 		ignores: IGNORE_PATTERNS,
 	},
 	...tsESLint.configs.stylisticTypeChecked,
+	// @ts-expect-error
 	...svelteEslint.configs['flat/prettier'],
 	{
 		plugins: {
