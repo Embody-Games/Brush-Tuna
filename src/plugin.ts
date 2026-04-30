@@ -4,7 +4,7 @@ BBPlugin.register(PACKAGE.name, {
 	title: PACKAGE.title,
 	author: PACKAGE.author.name,
 	description: PACKAGE.description,
-	icon: 'brush',
+	icon: 'fa-fish',
 	variant: 'desktop',
 	version: PACKAGE.version,
 	min_version: PACKAGE.min_blockbench_version,

@@ -2,7 +2,6 @@ import type { Plugin } from 'esbuild'
 import * as fs from 'fs'
 import { readFileSync, writeFileSync } from 'fs'
 import { basename, join } from 'node:path'
-import * as prettier from 'prettier'
 import sveltePreprocess from 'svelte-preprocess'
 // @ts-expect-error - Types are broken in nodenext for this package, but it works fine.
 import { typescript } from 'svelte-preprocess-esbuild'
@@ -85,7 +84,7 @@ async function renderSvelteFileToStaticHTML(path: string) {
 		css: 'external',
 		generate: 'server',
 		cssHash() {
-			return `animated-java-plugin-about-page`
+			return `${PACKAGE.name}-plugin-about-page`
 		},
 	}
 	let res: CompileResult

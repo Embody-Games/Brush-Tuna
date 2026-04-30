@@ -1,6 +1,6 @@
 {
-	"name": "pen_pusher",
-	"title": "Pen Pusher",
+	"name": "brush_tuna",
+	"title": "Brush Tuna",
 	"version": "1.0.0",
 	"tags": [
 		"Texture",
@@ -9,13 +9,13 @@
 	],
 	"min_blockbench_version": "5.1.4",
 	"author": {
-		"name": "SnaveSutit",
+		"name": "SnaveSutit & Embody Games",
 		"email": "snavesutit@gmail.com",
 		"url": "https://snavesutit.github.io/"
 	},
 	"repository": {
 		"type": "github",
-		"url": "https://github.com/SnaveSutit/pen-pusher"
+		"url": "https://github.com/SnaveSutit/brush-tuna"
 	},
 	"description": "A Blockbench plugin that adds more brush options",
 	"main": "./dist/index.js",
