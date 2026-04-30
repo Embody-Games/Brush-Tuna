@@ -1,7 +1,7 @@
 <script lang="ts" module>
 	import { onMount } from 'svelte'
 	import type { BrushPressureCurve } from '../../brushPresets'
-	import { getCurveX } from '../../util/curve'
+	import { getCurveXY } from '../../util/curve'
 	import { localize } from '../../util/lang'
 	import { getPressureDataFromEvent } from '../../util/pen'
 	import NumberSlider from '../numberSlider.svelte'
@@ -59,12 +59,6 @@
 	let pointB = $state<HTMLDivElement>()!
 
 	let pressure = $state(0)
-	let pressurePointX = $derived(
-		getCurveX(pressure, [startX, startY, pointAX, pointAY, pointBX, pointBY, endX, endY])
-	)
-	let pressurePointY = $derived(
-		getCurveX(pressure, [startY, startX, pointAY, pointAX, pointBY, pointBX, endY, endX])
-	)
 
 	const readTestAreaPressure = (event: TouchEvent | PointerEvent) => {
 		pressure = getPressureDataFromEvent(event).pressure ?? 0
@@ -149,16 +143,20 @@
 		ctx.closePath()
 
 		if (pressure > 0) {
+			const { x, y } = getCurveXY(pressure, [
+				startX,
+				startY,
+				pointAX,
+				pointAY,
+				pointBX,
+				pointBY,
+				endX,
+				endY,
+			])
 			// Draw pressure point
 			ctx.beginPath()
 			ctx.strokeStyle = 'red'
-			ctx.arc(
-				pressurePointX * canvas.width,
-				(1 - pressurePointY) * canvas.height,
-				5,
-				0,
-				Math.PI * 2
-			)
+			ctx.arc(x * canvas.width, (1 - y) * canvas.height, 5, 0, Math.PI * 2)
 			ctx.stroke()
 			ctx.closePath()
 		}
@@ -242,9 +240,17 @@
 		addEventListeners(document, 'mouseup touchend', stop)
 	}
 
+	const interval = setInterval(() => {
+		pressure = (pressure + 0.01) % 1
+	}, 16)
+
 	onMount(() => {
 		ctx = canvas!.getContext('2d')!
 		updateCurve()
+
+		return () => {
+			clearInterval(interval)
+		}
 	})
 </script>
 
