@@ -22,8 +22,8 @@
 	"types": "./dist/src/index.d.ts",
 	"private": true,
 	"scripts": {
-		"dev": "tsx .scripts/esbuild.ts --mode=dev",
-		"build": "tsx .scripts/esbuild.ts",
+		"dev": "bun .scripts/esbuild.ts --mode=dev",
+		"build": "bun .scripts/esbuild.ts",
 		"test": "vitest",
 		"format": "prettier --write ."
 	},
@@ -54,7 +54,6 @@
 		"svelte-preprocess": "^5.0.1",
 		"svelte-preprocess-esbuild": "^3.0.1",
 		"ts-loader": "^9.2.6",
-		"tsx": "^4.21.0",
 		"typescript": "^5.5.3",
 		"typescript-eslint": "^8.59.1",
 		"vitest": "^4.1.5",
