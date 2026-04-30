@@ -1,0 +1,20 @@
+brush_tuna:
+  curve_edit:
+    test_area: Test pen pressure here
+    start: Start
+    end: End
+    ctrl_a: Ctrl A
+    ctrl_b: Ctrl B
+    copy: Copy
+    copied: Curve copied to clipboard
+    paste: Paste
+    pasted: Curve pasted from clipboard
+    clipboard_empty: Clipboard is empty
+
+  message:
+    brush_preset_switched: Switched to brush preset "%s"
+
+  action:
+    pressure_curve: Pressure Curve
+    next_brush_preset: Next Brush Preset
+    previous_brush_preset: Previous Brush Preset

@@ -1,11 +1,10 @@
-import * as PACKAGE from '../package.json'
-
 //-------------------------------
 // Import your source files here
 //-------------------------------
 
 // Blockbench Patches
-import 'import_folder_recursive:./patches'
+import 'import_folder_recursive:./blockbench/actions'
+import 'import_folder_recursive:./blockbench/patches'
 // Misc imports
 import type { BrushPreset } from './brushPresets'
 

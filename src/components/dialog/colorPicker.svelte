@@ -39,8 +39,8 @@
 
 <DialogItem>
 	<div class="dialog_bar form_bar">
-		<label class="name_space_left" for={id}>{label}</label>
-		<div use:mountColorPicker></div>
+		<label class="name_space_left {disabled ? 'disabled' : ''}" for={id}>{label}</label>
+		<div use:mountColorPicker class={disabled ? 'disabled' : ''}></div>
 		{#if children}
 			<div class="spacer"></div>
 			{@render children()}
@@ -55,5 +55,9 @@
 		height: 0px;
 		margin: 8px;
 		margin-left: 0px;
+	}
+	.disabled {
+		opacity: 0.5;
+		pointer-events: none;
 	}
 </style>

@@ -1,5 +1,5 @@
 import { SvelteDialog } from 'svelte-patching-tools/blockbench'
-import PACKAGE from '../../../package.json'
+import PACKAGE from '../../../../package.json'
 import BrushOptionsComponent from './brushOptions.svelte'
 
 export function openPenPusherBrushOptions() {

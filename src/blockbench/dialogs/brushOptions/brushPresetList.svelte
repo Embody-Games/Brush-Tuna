@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onDestroy } from 'svelte'
-	import type { BrushPreset } from '../../brushPresets'
+	import type { Attachment } from 'svelte/attachments'
+	import type { BrushPreset } from '../../../brushPresets'
 
 	interface Props {
 		selectedPresetIndex: number
@@ -12,18 +13,25 @@
 	function createPreset() {
 		const newPreset: BrushPreset = {
 			name: `Preset ${presets.length + 1}`,
-			size: 16,
 			shape: 'circle',
-			use_pen_pressure_for_size: false,
+			size: 16,
+			size_pressure_curve: null,
 			softness: 0.5,
-			use_pen_pressure_for_softness: false,
+			softness_pressure_curve: null,
 			opacity: 1,
-			use_pen_pressure_for_opacity: false,
+			opacity_pressure_curve: null,
 			color: null,
 			blend_mode: 'default',
 		}
 		presets.push(newPreset)
 		selectedPresetIndex = presets.length - 1
+	}
+
+	const scrollSelectedIntoView: Attachment = element => {
+		element.scrollIntoView({
+			behavior: 'instant',
+			block: 'center',
+		})
 	}
 
 	onDestroy(() => {
@@ -33,14 +41,26 @@
 </script>
 
 {#snippet brushPresetItem(preset: BrushPreset, index: number)}
-	<div
-		class="brush-preset-item {selectedPresetIndex === index ? 'selected' : ''}"
-		title={preset.name}
-		onclick={() => (selectedPresetIndex = index)}
-	>
-		<i class="fa fa-{preset.shape === 'circle' ? 'circle' : 'square'}"></i>
-		{preset.name}
-	</div>
+	{#if selectedPresetIndex === index}
+		<div
+			class="brush-preset-item selected"
+			title={preset.name}
+			onclick={() => (selectedPresetIndex = index)}
+			{@attach scrollSelectedIntoView}
+		>
+			<i class="fa fa-{preset.shape === 'circle' ? 'circle' : 'square'}"></i>
+			{preset.name}
+		</div>
+	{:else}
+		<div
+			class="brush-preset-item"
+			title={preset.name}
+			onclick={() => (selectedPresetIndex = index)}
+		>
+			<i class="fa fa-{preset.shape === 'circle' ? 'circle' : 'square'}"></i>
+			{preset.name}
+		</div>
+	{/if}
 {/snippet}
 
 <div class="brush-preset-list">

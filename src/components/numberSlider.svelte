@@ -1,12 +1,6 @@
-<script lang="ts" module>
-	import DialogItem from './dialogItem.svelte'
-</script>
-
 <script lang="ts">
 	interface Props {
 		id: string
-		label: string
-		description?: string
 		step?: number
 
 		value: number
@@ -14,14 +8,10 @@
 		max?: number
 
 		disabled?: boolean
-
-		children?: () => any
 	}
 
 	let {
 		id,
-		label,
-		description,
 		step,
 
 		value = $bindable(),
@@ -29,8 +19,6 @@
 		max = $bindable(),
 
 		disabled,
-
-		children,
 	}: Props = $props()
 
 	let input = $state<HTMLInputElement>()
@@ -76,29 +64,23 @@
 	}
 </script>
 
-<DialogItem>
-	<div class="dialog_bar form_bar">
-		<label class="name_space_left {disabled ? 'disabled' : ''}" for={id}>{label}</label>
-		<div class="numeric_input {disabled ? 'disabled' : ''}">
-			<input
-				inputmode="decimal"
-				bind:this={input}
-				class="dark_bordered focusable_input"
-				bind:value
-				{disabled}
-				onfocusout={() => onFocusOut(input!, min, max)}
-			/>
-			<div
-				class="tool numaric_input_slider slider-fix"
-				onmousedown={e => onMousedown(input!, e)}
-				ontouchstart={e => onMousedown(input!, e)}
-			>
-				<i class="material-icons icon">code</i>
-			</div>
-		</div>
-		{@render children?.()}
+<div class="numeric_input {disabled ? 'disabled' : ''}">
+	<input
+		inputmode="decimal"
+		bind:this={input}
+		class="dark_bordered focusable_input"
+		bind:value
+		{disabled}
+		onfocusout={() => onFocusOut(input!, min, max)}
+	/>
+	<div
+		class="tool numaric_input_slider slider-fix"
+		onmousedown={e => onMousedown(input!, e)}
+		ontouchstart={e => onMousedown(input!, e)}
+	>
+		<i class="material-icons icon">code</i>
 	</div>
-</DialogItem>
+</div>
 
 <style>
 	input {
