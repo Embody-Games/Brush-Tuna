@@ -24,6 +24,7 @@ A Blockbench plugin that overhauls the Brush Presets system, providing an improv
 - Per-preset pen pressure configuration
 - Customizable pen pressure curves
 - Keybinds for quickly switching between presets using `[` and `]`
+- Lock Alpha option can be toggled per Brush Preset
 - Improved preset list in Brush Presets menu
 
 ![example](./assets/about-screenshot1.png)
