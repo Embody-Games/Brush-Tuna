@@ -31,6 +31,8 @@ export interface BrushPreset {
 	shape: BrushShape
 	blend_mode: BlendMode
 
+	lock_alpha: boolean | null
+
 	size: number | null
 	size_pressure_curve: BrushPressureCurve | null
 

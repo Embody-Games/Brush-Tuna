@@ -18,8 +18,10 @@
 	let name = $derived(presets[selectedIndex].name)
 	let shape = $derived(presets[selectedIndex].shape)
 	let blendMode = $derived(presets[selectedIndex].blend_mode)
+	let lockAlpha = $derived(presets[selectedIndex].lock_alpha ?? false)
 	let size = $derived(presets[selectedIndex].size)
 	let sizeEnabled = $derived(presets[selectedIndex].size != null)
+
 	let usePenPressureForSize = $derived(presets[selectedIndex].size_pressure_curve != null)
 	let sizeCurveStartPointX = $derived(presets[selectedIndex].size_pressure_curve?.[0] ?? 0)
 	let sizeCurveStartPointY = $derived(presets[selectedIndex].size_pressure_curve?.[1] ?? 0)
@@ -67,6 +69,7 @@
 		selected.name = name
 		selected.shape = shape
 		selected.blend_mode = blendMode
+		selected.lock_alpha = lockAlpha
 
 		selected.size = sizeEnabled ? size : null
 		selected.size_pressure_curve = usePenPressureForSize
@@ -165,6 +168,12 @@
 		}}
 		bind:value={blendMode}
 	/>
+
+	<Checkbox
+		id="lock-alpha"
+		label={tl('action.lock_alpha')}
+		bind:checked={lockAlpha}
+	></Checkbox>
 
 	<NumberSlider
 		id="size"

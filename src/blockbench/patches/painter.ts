@@ -24,6 +24,10 @@ registerPropertyOverridePatch({
 	get(this: typeof Painter, original) {
 		return function (this: typeof Painter, preset) {
 			original.call(this, preset)
+
+			const lockAlpha = BarItems.lock_alpha as Toggle
+			lockAlpha.set(preset.lock_alpha)
+
 			BrushTuna.brushPreset = preset
 		}
 	},
@@ -56,9 +60,6 @@ registerPropertyOverridePatch({
 				const preset = BrushTuna.brushPreset
 
 				const { pressure, angle } = getPressureDataFromEvent(event)
-
-				console.log('Event:', event)
-				console.log('Pressure:', pressure, 'Angle:', angle)
 
 				if (pressure !== undefined) {
 					if (preset.size_pressure_curve) {
