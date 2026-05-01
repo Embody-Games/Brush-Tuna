@@ -240,17 +240,17 @@
 		addEventListeners(document, 'mouseup touchend', stop)
 	}
 
-	const interval = setInterval(() => {
-		pressure = (pressure + 0.01) % 1
-	}, 16)
-
 	onMount(() => {
 		ctx = canvas!.getContext('2d')!
 		updateCurve()
 
-		return () => {
-			clearInterval(interval)
-		}
+		// const interval = setInterval(() => {
+		// 	pressure = (pressure + 0.01) % 1
+		// }, 16)
+
+		// return () => {
+		// 	clearInterval(interval)
+		// }
 	})
 </script>
 
