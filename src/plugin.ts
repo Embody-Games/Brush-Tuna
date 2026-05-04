@@ -9,6 +9,8 @@ BBPlugin.register(PACKAGE.name, {
 	version: PACKAGE.version,
 	min_version: PACKAGE.min_blockbench_version,
 	tags: PACKAGE.tags as [string, string, string],
+	bug_tracker: PACKAGE.repository.url + '/issues',
+	has_changelog: true,
 	onload() {},
 	onunload() {},
 	oninstall() {},
