@@ -17,7 +17,7 @@
 		"type": "github",
 		"url": "https://github.com/SnaveSutit/brush-tuna"
 	},
-	"description": "A Blockbench plugin that adds more brush options",
+	"description": "Brush Tuna overhauls the Brush Presets system, providing an improved interface, and several new features.",
 	"main": "./dist/index.js",
 	"types": "./dist/src/index.d.ts",
 	"private": true,
