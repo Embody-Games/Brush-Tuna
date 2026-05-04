@@ -1,16 +1,12 @@
 {
-	"1.0.0": {
-		"title": "v1.0.0",
-		"author": "Someone Cool",
-		"date": "2025-01-08",
+	"1.0.4": {
+		"title": "v1.0.4",
+		"author": "SnaveSutit & Embody Games",
+		"date": "2025-05-05",
 		"categories": [
 			{
 				"title": "Changes",
-				"list": ["Created the plugin!"]
-			},
-			{
-				"title": "Fixes",
-				"list": ["Fixed the plugin not existing!"]
+				"list": ["Released the plugin!"]
 			}
 		]
 	}
