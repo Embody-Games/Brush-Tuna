@@ -14,24 +14,23 @@ export type BlendMode =
 
 export type BrushShape = 'unset' | 'circle' | 'square'
 
-/**
- * 0 = start X
- * 1 = start Y
- * 2 = ctrl A X
- * 3 = ctrl A Y
- * 4 = ctrl B X
- * 5 = ctrl B Y
- * 6 = end X
- * 7 = end Y
- */
-export type BrushPressureCurve = [number, number, number, number, number, number, number, number]
+export type BrushPressureCurve = [
+	StartX: number,
+	StartY: number,
+	CtrlAX: number,
+	CtrlAY: number,
+	CtrlBX: number,
+	CtrlBY: number,
+	EndX: number,
+	EndY: number,
+]
 
 export interface BrushPreset {
 	name: string
 	shape: BrushShape
 	blend_mode: BlendMode
 
-	lock_alpha: boolean | null
+	lock_alpha: boolean
 
 	size: number | null
 	size_pressure_curve: BrushPressureCurve | null

@@ -4,16 +4,24 @@
 	import type { BrushPreset } from '../../../brushPresets'
 
 	interface Props {
-		selectedPresetIndex: number
+		presetIndex: number
+		presetHash: string
 		presets: BrushPreset[]
+		updatePresetHash: () => void
 	}
 
-	let { selectedPresetIndex = $bindable(), presets }: Props = $props()
+	let {
+		presetIndex = $bindable(),
+		presetHash = $bindable(),
+		presets,
+		updatePresetHash,
+	}: Props = $props()
 
 	function createPreset() {
 		const newPreset: BrushPreset = {
 			name: `Preset ${presets.length + 1}`,
 			shape: 'circle',
+			lock_alpha: false,
 			size: 16,
 			size_pressure_curve: null,
 			softness: 0.5,
@@ -24,7 +32,13 @@
 			blend_mode: 'default',
 		}
 		presets.push(newPreset)
-		selectedPresetIndex = presets.length - 1
+		selectPreset(presets.length - 1)
+		updatePresetHash()
+	}
+
+	function selectPreset(index: number) {
+		presetIndex = index
+		updatePresetHash()
 	}
 
 	const scrollSelectedIntoView: Attachment = element => {
@@ -41,22 +55,18 @@
 </script>
 
 {#snippet brushPresetItem(preset: BrushPreset, index: number)}
-	{#if selectedPresetIndex === index}
+	{#if presetIndex === index}
 		<div
 			class="brush-preset-item selected"
 			title={preset.name}
-			onclick={() => (selectedPresetIndex = index)}
+			onclick={() => selectPreset(index)}
 			{@attach scrollSelectedIntoView}
 		>
 			<i class="fa fa-{preset.shape === 'circle' ? 'circle' : 'square'}"></i>
 			{preset.name}
 		</div>
 	{:else}
-		<div
-			class="brush-preset-item"
-			title={preset.name}
-			onclick={() => (selectedPresetIndex = index)}
-		>
+		<div class="brush-preset-item" title={preset.name} onclick={() => selectPreset(index)}>
 			<i class="fa fa-{preset.shape === 'circle' ? 'circle' : 'square'}"></i>
 			{preset.name}
 		</div>
@@ -64,7 +74,7 @@
 {/snippet}
 
 <div class="brush-preset-list">
-	{#key selectedPresetIndex}
+	{#key presetHash}
 		{#each presets as preset, index (index + preset.name + preset.shape)}
 			{@render brushPresetItem(preset, index)}
 		{/each}
@@ -110,6 +120,9 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+	}
+
+	.add-preset-button i {
 		cursor: pointer;
 	}
 
