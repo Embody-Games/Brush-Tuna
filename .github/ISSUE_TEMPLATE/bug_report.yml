@@ -1,0 +1,115 @@
+name: 🐛 Bug Report
+description: Report a problem or bug you encountered while using Brush Tuna
+title: 🐛 [BUG TITLE]
+labels:
+  - 🐛 Bug
+assignees:
+  - SnaveSutit
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        # 👋 Thank You for Creating a Bug Report!
+
+        Please replace `[BUG TITLE]` in the title with a short, descriptive title of the bug you're reporting,
+        then fill out the following information to the best of your ability.
+
+  - type: markdown
+    attributes:
+      value: '---'
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 🗣️ Describe the bug
+      description: >-
+        A clear and concise description of the bug. You may include screenshots,
+        videos, and other media as needed.
+      placeholder: My lawnmower is producing large clumps of grass.
+    validations:
+      required: true
+
+  - type: textarea
+    id: error
+    attributes:
+      label: ⚠️ Error Message
+      description: The error message provided by Brush Tuna (If applicable)
+      render: javascript
+      placeholder: >-
+        If you received an error message, please paste it here. If not, you can
+        leave this field blank.
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: 🔄️ How to Reproduce
+      description: >-
+        A short explanation of how to reproduce the issue.
+      placeholder: |-
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: ✅ Expected Behavior
+      description: What you expected to happen when performing the above steps.
+      placeholder: >-
+        My lawnmower should produce small grass clippings that easily filter
+        into the lawn.
+    validations:
+      required: true
+
+  - type: textarea
+    id: solutions
+    attributes:
+      label: 💡 Solutions & Alternatives
+      description: >-
+        Any alternative solutions, or workarounds you've considered, and why
+        they're not ideal.
+      placeholder: >-
+        - I could use a lawnmower bag, but I would need to purchase a bag, and
+        empty it periodically while mowing.
+
+  - type: markdown
+    attributes:
+      value: |-
+        # ⛰️ Environment
+
+        Provide details about your system and setup to help diagnose the issue.
+
+  - type: input
+    id: bb-version
+    attributes:
+      label: 🟦 Blockbench Version
+      description: The version of Blockbench you're using.
+      placeholder: E.g. 4.12.2
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: 💻 Operating System
+      description: The operating system of the computer you're using Brush Tuna on.
+      options:
+        - Windows
+        - Linux
+        - MacOS
+    validations:
+      required: true
+
+  - type: textarea
+    id: installed-bb-plugins
+    attributes:
+      label: 📃 Installed Blockbench Plugins
+      description: Any Blockbench Plugins you have installed other than Brush Tuna.
+      placeholder: |-
+        - Geckolib Animation Utils
+        - Cameras
+        - Double Sided Cubes
+        - etc...

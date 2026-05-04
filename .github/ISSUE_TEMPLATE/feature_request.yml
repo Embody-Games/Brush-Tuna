@@ -1,0 +1,48 @@
+name: ✨ Feature Request
+description: Suggest a new feature or enhancement for Brush Tuna!
+title: ✨ [FEATURE TITLE]
+labels:
+  - ✨ Enhancement
+assignees:
+  - SnaveSutit
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        # 👋 Thank You for Opening a Feature Request!
+
+        Please replace `[FEATURE TITLE]` in the title with a short, descriptive title of the feature you're requesting,
+        then fill out the following information to the best of your ability.
+
+  - type: markdown
+    attributes:
+      value: '---'
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 📝 Description
+      description: A clear and concise description of the problem or missing capability.
+      placeholder: My lawnmower doesn't work on mars.
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: 💡 Describe the solution you'd like
+      description: If you have a solution in mind, please describe it.
+      placeholder: >-
+        Combustion engines don't work without enough oxygen, so maybe we could
+        use an electric engine instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 🧪 Describe alternatives you've considered
+      description: Have you considered any alternative solutions or workarounds?
+      placeholder: >-
+        I thought about using a jet engine, but that seems like it would be
+        really expensive and overkill for a lawnmower.
