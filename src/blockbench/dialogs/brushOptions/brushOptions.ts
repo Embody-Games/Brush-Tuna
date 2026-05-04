@@ -1,12 +1,21 @@
+import { mount } from 'svelte'
 import { SvelteDialog } from 'svelte-patching-tools/blockbench'
 import PACKAGE from '../../../../package.json'
-import BrushOptionsComponent from './brushOptions.svelte'
+import BrushPresetsDialogComponent from './brushPresetsDialog.svelte'
+import TitleComponent from './title.svelte'
 
 export function openPenPusherBrushOptions() {
-	new SvelteDialog({
+	const dialog = new SvelteDialog({
 		id: `${PACKAGE.name}:brush_options`,
 		title: 'menu.brush_presets.dialog',
-		component: BrushOptionsComponent,
+		component: BrushPresetsDialogComponent,
 		singleButton: true,
-	}).show()
+		onOpen() {
+			const oldTitle = jQuery('dialog[id="brush_tuna:brush_options"] .dialog_title')[0]
+			if (!oldTitle) return
+			mount(TitleComponent, { target: oldTitle.parentElement! })
+			oldTitle.remove()
+		},
+	})
+	dialog.show()
 }
