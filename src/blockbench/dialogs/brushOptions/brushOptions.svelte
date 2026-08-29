@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { BrushPreset } from '../../../brushPresets'
+	import { getBrushTunaSettings } from '../../../brushTunaSettings'
 	import Button from '../../../components/dialog/button.svelte'
 	import Checkbox from '../../../components/dialog/checkbox.svelte'
 	import ColorPicker from '../../../components/dialog/colorPicker.svelte'
@@ -25,6 +26,20 @@
 	let shape = $derived(preset.shape)
 	let blendMode = $derived(preset.blend_mode)
 	let lockAlpha = $derived(preset.lock_alpha)
+
+	// Fallback so enabling the override starts from the current default.
+	let defaultPressureCurve = $derived(getBrushTunaSettings().default_pressure_curve)
+
+	let overridePressureCurve = $derived(preset.pressure_curve != null)
+	let pressureCurveStartPointX = $derived(preset.pressure_curve?.[0] ?? defaultPressureCurve[0])
+	let pressureCurveStartPointY = $derived(preset.pressure_curve?.[1] ?? defaultPressureCurve[1])
+	let pressureCurvePointAX = $derived(preset.pressure_curve?.[2] ?? defaultPressureCurve[2])
+	let pressureCurvePointAY = $derived(preset.pressure_curve?.[3] ?? defaultPressureCurve[3])
+	let pressureCurvePointBX = $derived(preset.pressure_curve?.[4] ?? defaultPressureCurve[4])
+	let pressureCurvePointBY = $derived(preset.pressure_curve?.[5] ?? defaultPressureCurve[5])
+	let pressureCurveEndPointX = $derived(preset.pressure_curve?.[6] ?? defaultPressureCurve[6])
+	let pressureCurveEndPointY = $derived(preset.pressure_curve?.[7] ?? defaultPressureCurve[7])
+
 	let size = $derived(preset.size)
 	let sizeEnabled = $derived(preset.size != null)
 
@@ -72,6 +87,19 @@
 		preset.shape = shape
 		preset.blend_mode = blendMode
 		preset.lock_alpha = lockAlpha
+
+		preset.pressure_curve = overridePressureCurve
+			? [
+					pressureCurveStartPointX,
+					pressureCurveStartPointY,
+					pressureCurvePointAX,
+					pressureCurvePointAY,
+					pressureCurvePointBX,
+					pressureCurvePointBY,
+					pressureCurveEndPointX,
+					pressureCurveEndPointY,
+				]
+			: null
 
 		preset.size = sizeEnabled ? size : null
 		preset.size_pressure_curve = usePenPressureForSize
@@ -159,6 +187,27 @@
 />
 
 <Checkbox id="lock-alpha" label={tl('action.lock_alpha')} bind:checked={lockAlpha}></Checkbox>
+
+<Checkbox
+	id="override-pressure-curve"
+	label={localize('brush_tuna.action.override_default_pressure_curve')}
+	bind:checked={overridePressureCurve}
+></Checkbox>
+
+{#if overridePressureCurve}
+	<CurveEdit
+		id="pressure-curve-override"
+		label={localize('brush_tuna.action.default_pressure_curve')}
+		bind:startX={pressureCurveStartPointX}
+		bind:startY={pressureCurveStartPointY}
+		bind:endX={pressureCurveEndPointX}
+		bind:endY={pressureCurveEndPointY}
+		bind:pointAX={pressureCurvePointAX}
+		bind:pointAY={pressureCurvePointAY}
+		bind:pointBX={pressureCurvePointBX}
+		bind:pointBY={pressureCurvePointBY}
+	></CurveEdit>
+{/if}
 
 <NumberSlider
 	id="size"

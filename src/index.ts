@@ -2,6 +2,8 @@
 // Import your source files here
 //-------------------------------
 
+// Init persisted settings before anything reads them
+import './brushTunaSettings'
 // Blockbench Patches
 import 'import_folder_recursive:./blockbench/actions'
 import 'import_folder_recursive:./blockbench/patches'

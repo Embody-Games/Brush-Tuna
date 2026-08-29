@@ -32,6 +32,9 @@ export interface BrushPreset {
 
 	lock_alpha: boolean
 
+	// Per-preset override of the global default pressure curve. Absent = use default.
+	pressure_curve?: BrushPressureCurve | null
+
 	size: number | null
 	size_pressure_curve: BrushPressureCurve | null
 
