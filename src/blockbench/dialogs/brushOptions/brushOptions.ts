@@ -9,6 +9,7 @@ export function openPenPusherBrushOptions() {
 		id: `${PACKAGE.name}:brush_options`,
 		title: 'menu.brush_presets.dialog',
 		component: BrushPresetsDialogComponent,
+		width: 800,
 		singleButton: true,
 		onOpen() {
 			const oldTitle = jQuery('dialog[id="brush_tuna:brush_options"] .dialog_title')[0]

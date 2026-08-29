@@ -5,6 +5,7 @@
 	import Checkbox from '../../../components/dialog/checkbox.svelte'
 	import ColorPicker from '../../../components/dialog/colorPicker.svelte'
 	import CurveEdit from '../../../components/dialog/curveEdit.svelte'
+	import IconSelect from '../../../components/dialog/iconSelect.svelte'
 	import LineEdit from '../../../components/dialog/lineEdit.svelte'
 	import NumberSlider from '../../../components/dialog/numberSlider.svelte'
 	import Select from '../../../components/dialog/select.svelte'
@@ -24,6 +25,7 @@
 
 	let name = $derived(preset.name)
 	let shape = $derived(preset.shape)
+	let icon = $derived(preset.icon ?? '')
 	let blendMode = $derived(preset.blend_mode)
 	let lockAlpha = $derived(preset.lock_alpha)
 
@@ -85,6 +87,7 @@
 	$effect.pre(() => {
 		preset.name = name
 		preset.shape = shape
+		preset.icon = icon || null
 		preset.blend_mode = blendMode
 		preset.lock_alpha = lockAlpha
 
@@ -153,6 +156,14 @@
 </script>
 
 <LineEdit id="brush-name" label={tl('generic.name')} bind:value={name} />
+<IconSelect
+	id="brush-icon"
+	label={localize('brush_tuna.action.brush_icon')}
+	defaultLabel={localize('brush_tuna.action.brush_icon.default')}
+	bind:value={icon}
+/>
+
+<h3>{localize('brush_tuna.dialog.brush_presets.section.appearance')}</h3>
 
 <Select
 	id="brush-shape"
@@ -186,28 +197,11 @@
 	bind:value={blendMode}
 />
 
-<Checkbox id="lock-alpha" label={tl('action.lock_alpha')} bind:checked={lockAlpha}></Checkbox>
+<ColorPicker id="color" label={tl('data.color')} disabled={!colorEnabled} bind:value={color!}>
+	<input type="checkbox" bind:checked={colorEnabled} />
+</ColorPicker>
 
-<Checkbox
-	id="override-pressure-curve"
-	label={localize('brush_tuna.action.override_default_pressure_curve')}
-	bind:checked={overridePressureCurve}
-></Checkbox>
-
-{#if overridePressureCurve}
-	<CurveEdit
-		id="pressure-curve-override"
-		label={localize('brush_tuna.action.default_pressure_curve')}
-		bind:startX={pressureCurveStartPointX}
-		bind:startY={pressureCurveStartPointY}
-		bind:endX={pressureCurveEndPointX}
-		bind:endY={pressureCurveEndPointY}
-		bind:pointAX={pressureCurvePointAX}
-		bind:pointAY={pressureCurvePointAY}
-		bind:pointBX={pressureCurvePointBX}
-		bind:pointBY={pressureCurvePointBY}
-	></CurveEdit>
-{/if}
+<h3>{localize('brush_tuna.dialog.brush_presets.section.dynamics')}</h3>
 
 <NumberSlider
 	id="size"
@@ -305,6 +299,33 @@
 	></CurveEdit>
 {/if}
 
+<h3>{localize('brush_tuna.dialog.brush_presets.section.pen_pressure')}</h3>
+
+<Checkbox
+	id="override-pressure-curve"
+	label={localize('brush_tuna.action.override_default_pressure_curve')}
+	bind:checked={overridePressureCurve}
+></Checkbox>
+
+{#if overridePressureCurve}
+	<CurveEdit
+		id="pressure-curve-override"
+		label={localize('brush_tuna.action.default_pressure_curve')}
+		bind:startX={pressureCurveStartPointX}
+		bind:startY={pressureCurveStartPointY}
+		bind:endX={pressureCurveEndPointX}
+		bind:endY={pressureCurveEndPointY}
+		bind:pointAX={pressureCurvePointAX}
+		bind:pointAY={pressureCurvePointAY}
+		bind:pointBX={pressureCurvePointBX}
+		bind:pointBY={pressureCurvePointBY}
+	></CurveEdit>
+{/if}
+
+<h3>{localize('brush_tuna.dialog.brush_presets.section.behavior')}</h3>
+
+<Checkbox id="lock-alpha" label={tl('action.lock_alpha')} bind:checked={lockAlpha}></Checkbox>
+
 <Checkbox id="pixel-perfect" label={tl('action.pixel_perfect_drawing')} bind:checked={pixelPerfect}
 ></Checkbox>
 
@@ -314,15 +335,18 @@
 	bind:checked={screenSpace}
 ></Checkbox>
 
-<ColorPicker id="color" label={tl('data.color')} disabled={!colorEnabled} bind:value={color!}>
-	<input type="checkbox" bind:checked={colorEnabled} />
-</ColorPicker>
-
 <div class="spacer"></div>
 
 <Button icon="trash" label={tl('generic.delete')} onclick={deletePreset}></Button>
 
 <style>
+	h3 {
+		margin: 18px 0 6px;
+		padding-bottom: 4px;
+		border-bottom: 1px solid var(--color-border);
+		color: var(--color-subtle_text);
+	}
+
 	.spacer {
 		height: 16px;
 	}

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { BrushPreset } from '../../../brushPresets'
+	import { localize } from '../../../util/lang'
 	import BrushOptions from './brushOptions.svelte'
 	import BrushPresetList from './brushPresetList.svelte'
 
@@ -8,14 +9,13 @@
 
 	let presetIndex = $state(0)
 	let presetHash = $state('')
+	// presets isn't a reactive array, so track its length explicitly.
+	let presetCount = $state(presets.length)
 
 	const updatePresetHash = () => {
+		presetCount = presets.length
 		const preset = presets[presetIndex]
-		if (preset) {
-			presetHash = JSON.stringify(preset)
-		} else {
-			presetHash = ''
-		}
+		presetHash = preset ? JSON.stringify(preset) : ''
 	}
 
 	const deletePreset = () => {
@@ -28,16 +28,34 @@
 	}
 </script>
 
-<div class="brush-options-dialog">
-	<BrushPresetList bind:presetIndex {presets} {updatePresetHash} bind:presetHash />
-	{#if presets[presetIndex]}
-		<BrushOptions {presets} bind:presetIndex {deletePreset} {updatePresetHash} />
-	{/if}
+<div class="brush-tuna-dialog">
+	<BrushPresetList bind:presetIndex bind:presetHash {presets} {updatePresetHash} {deletePreset} />
+	<div class="brush-tuna-dialog-form">
+		{#if presetCount > 0 && presets[presetIndex]}
+			<BrushOptions {presets} bind:presetIndex {deletePreset} {updatePresetHash} />
+		{:else}
+			<p class="brush-tuna-empty">{localize('brush_tuna.dialog.brush_presets.no_presets')}</p>
+		{/if}
+	</div>
 </div>
 
 <style>
-	.brush-options-dialog {
-		max-height: 75vh;
+	.brush-tuna-dialog {
+		display: flex;
+		gap: 20px;
+		min-height: 420px;
+	}
+
+	.brush-tuna-dialog-form {
+		flex: 1;
+		min-width: 0;
+		max-height: calc(100vh - 220px);
 		overflow-y: auto;
+		padding-right: 8px;
+	}
+
+	.brush-tuna-empty {
+		margin-top: 16px;
+		color: var(--color-subtle_text);
 	}
 </style>

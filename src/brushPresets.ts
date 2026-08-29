@@ -47,5 +47,8 @@ export interface BrushPreset {
 	pixel_perfect?: boolean
 	screen_space?: boolean
 
+	// Icon shown for the preset. Empty/absent = derive it from the shape.
+	icon?: string | null
+
 	color: string | null
 }

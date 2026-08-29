@@ -22,12 +22,22 @@ brush_tuna:
     default_pressure_curve: Default Pressure Curve
     override_default_pressure_curve: Override Default Pressure Curve
     reset_to_default: Reset to Default
+    new_preset: New Preset
+    brush_icon: Icon
+    brush_icon.default: Default (from shape)
 
   dialog:
+    brush_presets:
+      no_presets: No brush presets yet. Create one to get started.
+      section:
+        appearance: Appearance
+        dynamics: Dynamics
+        pen_pressure: Pen Pressure
+        behavior: Behavior
     brush_settings:
       title: Brush Settings
       default_brush_curve:
-        title: Default Brush Curve
+        title: Default Pressure Curve
         description: >-
           This curve sets the default pen pressure behavior for all brushes.
 
