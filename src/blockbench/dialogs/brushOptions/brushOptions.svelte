@@ -63,6 +63,7 @@
 	let opacityCurveEndPointY = $derived(preset.opacity_pressure_curve?.[7] ?? 1)
 
 	let pixelPerfect = $derived(preset.pixel_perfect ?? false)
+	let screenSpace = $derived(preset.screen_space ?? false)
 	let color = $derived(preset.color)
 	let colorEnabled = $derived(preset.color != null)
 
@@ -115,6 +116,7 @@
 			: null
 
 		preset.pixel_perfect = pixelPerfect
+		preset.screen_space = screenSpace
 
 		preset.color = colorEnabled ? color : null
 
@@ -255,6 +257,12 @@
 {/if}
 
 <Checkbox id="pixel-perfect" label={tl('action.pixel_perfect_drawing')} bind:checked={pixelPerfect}
+></Checkbox>
+
+<Checkbox
+	id="screen-space-brush"
+	label={tl('action.screen_space_brush_projection')}
+	bind:checked={screenSpace}
 ></Checkbox>
 
 <ColorPicker id="color" label={tl('data.color')} disabled={!colorEnabled} bind:value={color!}>

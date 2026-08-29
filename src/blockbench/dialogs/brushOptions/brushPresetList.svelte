@@ -30,6 +30,8 @@
 			opacity_pressure_curve: null,
 			color: null,
 			blend_mode: 'default',
+			pixel_perfect: false,
+			screen_space: false,
 		}
 		presets.push(newPreset)
 		selectPreset(presets.length - 1)

@@ -42,6 +42,7 @@ export interface BrushPreset {
 	opacity_pressure_curve: BrushPressureCurve | null
 
 	pixel_perfect?: boolean
+	screen_space?: boolean
 
 	color: string | null
 }
