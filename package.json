@@ -1,13 +1,13 @@
 {
 	"name": "brush_tuna",
 	"title": "Brush Tuna",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"tags": [
 		"Texture",
 		"Paint",
 		"Tool"
 	],
-	"min_blockbench_version": "5.1.4",
+	"min_blockbench_version": "5.2.0-beta.1",
 	"author": {
 		"name": "SnaveSutit & Embody Games",
 		"email": "snavesutit@gmail.com",

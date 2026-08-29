@@ -9,5 +9,22 @@
 				"list": ["Released the plugin!"]
 			}
 		]
+	},
+	"1.0.7": {
+		"title": "v1.0.7",
+		"author": "SnaveSutit & Embody Games",
+		"date": "2026-08-29",
+		"categories": [
+			{
+				"title": "Changes",
+				"list": [
+					"Added a toggle for each preset that enables or disables screen-space drawing.",
+					"Added a \"Brush Settings\" dialog with a configurable default pen pressure curve.",
+					"Added a per-preset option to override the default pen pressure curve.",
+					"Overhauled the Brush Presets dialog.",
+					"Added a per-preset icon option: pick any icon bundled with Blockbench from a searchable picker, overriding the shape-based icon."
+				]
+			}
+		]
 	}
 }
